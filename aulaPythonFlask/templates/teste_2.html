@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+
+    <!-- Exibir mensagem de sucesso -->
+    {% if success %}
+        <div class="success">{{ success }}</div>
+    {% endif %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        
+        <div>
+            {{ form.name.label }} {{ form.name(size=32) }}
+            {% for error in form.name.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.email.label }} {{ form.email(size=32) }}
+            {% for error in form.email.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.password.label }} {{ form.password(size=32) }}
+            {% for error in form.password.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.confirm_password.label }} {{ form.confirm_password(size=32) }}
+            {% for error in form.confirm_password.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.message.label }} {{ form.message(rows=4, cols=40) }}
+            {% for error in form.message.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+</html>
